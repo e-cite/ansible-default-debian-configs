@@ -60,3 +60,17 @@
   handlers:
   - name: restart ntp
     service: name=ntp state=restarted
+
+- name: Play to activate unattended-upgrades
+  hosts: all
+  become: yes
+  tasks:
+  - name: Install unattended-upgrades package
+    apt:
+      name: unattended-upgrades
+      state: present
+  - name: Activate automatic unattended-upgrades by copying template file
+    copy:
+      src: /usr/share/unattended-upgrades/20auto-upgrades
+      dest: /etc/apt/apt.conf.d/20auto-upgrades
+      remote_src: yes
