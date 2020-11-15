@@ -1,0 +1,11 @@
+# Inventory file
+# It's recommended to use FQDN hostnames
+all:
+  children:
+    test:
+      hosts:
+        debianserver1.fritz.box:
+    rpis:
+      hosts:
+        rpi1.fritz.box:
+        rpi2.fritz.box:
