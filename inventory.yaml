@@ -1,10 +1,12 @@
 # Inventory file
-# It's recommended to use FQDN hostnames
+# If hostname is used, there will be problems after 
 all:
   children:
     test:
       hosts:
         debianserver1.fritz.box:
+          new_hostname: "debianserver1"
+          new_domain: "fritz.box"
     rpis:
       hosts:
         rpi1.fritz.box:
