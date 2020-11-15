@@ -33,34 +33,30 @@
 
 - name: Play to set locale and timezone
   hosts: all
+  become: yes
   tasks:
   - name: Set locale to de_DE.UTF-8.
     community.general.locale_gen: name=de_DE.UTF-8 state=present
-    become: yes
   - name: Set timezone to Europe/Berlin.
     community.general.timezone: name=Europe/Berlin
-    become: yes
 
 - name: Play to install and configure NTP
   hosts: all
+  become: yes
   vars:
     ntp_server: [0.de.pool.ntp.org,1.de.pool.ntp.org,2.de.pool.ntp.org,3.de.pool.ntp.org]
     ntp_server_backup: [pool.ntp.org]
   tasks:
   - name: Install NTP package
     apt: name=ntp update_cache=yes state=present
-    become: yes
   - name: Copy the ntp.conf template file, notify handler restart ntp
     template: src=ntp.conf.j2 dest=/etc/ntp.conf
     notify: restart ntp
-    become: yes
   - name: Ensure ntp is started an enabled on restart.
     service:
       name: ntp
       state: started
       enabled: yes
-    become: yes
   handlers:
   - name: restart ntp
     service: name=ntp state=restarted
-    become: yes
