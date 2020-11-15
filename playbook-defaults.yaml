@@ -1,5 +1,6 @@
 # This playbook configures default parameters on debian based systems
 - name: Play to set hostname according to inventory file
+  tags: hostname
   hosts: all
   become: yes
   tasks:
@@ -32,6 +33,7 @@
         new_hostname is defined and new_domain is defined
 
 - name: Play to set locale and timezone
+  tags: localtimezone
   hosts: all
   become: yes
   tasks:
@@ -41,6 +43,7 @@
     community.general.timezone: name=Europe/Berlin
 
 - name: Play to install and configure NTP
+  tags: ntp
   hosts: all
   become: yes
   vars:
@@ -62,6 +65,7 @@
     service: name=ntp state=restarted
 
 - name: Play to activate unattended-upgrades
+  tags: unattended-upgrades
   hosts: all
   become: yes
   tasks:
