@@ -24,14 +24,14 @@ _transform: true
 # can be listed in the top-level as an array of objects:
 
 services:
-- name: example-service
-  url: http://example.com
+- name: rules-etopen-service
+  url: https://rules.emergingthreats.net/open/suricata-5.0/rules/
   # Entities can store tags as metadata
   tags:
   - example
   # Entities that have a foreign-key relationship can be nested:
   routes:
-  - name: example-route
+  - name: rules-etopen-route
     paths:
     - /
   plugins:
@@ -52,6 +52,7 @@ consumers:
   # If they specify a foreign-key relationshp, they can also be nested
   keyauth_credentials:
   - key: my-key
+  - key: adminadmin1234
 #   plugins:
 #   - name: rate-limiting
 #     _comment: "these are default rate-limits for user example-user"
