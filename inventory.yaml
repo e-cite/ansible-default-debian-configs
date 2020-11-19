@@ -11,3 +11,7 @@ all:
       hosts:
         rpi1.fritz.box:
         rpi2.fritz.box:
+    webservers:
+      hosts:
+        debianserver1.fritz.box:
+          debian_release: "buster"

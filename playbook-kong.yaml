@@ -1,0 +1,37 @@
+# This playbook installs and configures KONG CE on debian based systems
+- name: Install and configure
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Add KONG repository
+      apt_repository:
+        repo: deb https://kong.bintray.com/kong-deb {{ debian_release }} main
+        state: present
+    - name: Add KONG apt key
+      apt_key:
+        url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+        state: present
+    - name: Install KONG
+      apt:
+        name: kong
+        state: present
+    - name: Copy kong.conf
+      copy:
+        src: kong.conf
+        dest: /etc/kong/kong.conf
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Copy kong.yml
+      copy:
+        src: kong.yml
+        dest: /etc/kong/kong.yml
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Start and enable kong service
+      service:
+        name: kong
+        state: started
+        enabled: yes
+    # Firewall Profile
