@@ -23,19 +23,19 @@ _transform: true
 # Each Kong entity (core entity or custom entity introduced by a plugin)
 # can be listed in the top-level as an array of objects:
 
-# services:
-# - name: example-service
-#   url: http://example.com
-#   # Entities can store tags as metadata
-#   tags:
-#   - example
-#   # Entities that have a foreign-key relationship can be nested:
-#   routes:
-#   - name: example-route
-#     paths:
-#     - /
-#   plugins:
-#   - name: key-auth
+services:
+- name: example-service
+  url: http://example.com
+  # Entities can store tags as metadata
+  tags:
+  - example
+  # Entities that have a foreign-key relationship can be nested:
+  routes:
+  - name: example-route
+    paths:
+    - /
+  plugins:
+  - name: key-auth
 # - name: another-service
 #   url: https://example.org
 
@@ -46,12 +46,12 @@ _transform: true
 #   service: example-service
 #   hosts: ["hello.com"]
 
-# consumers:
-# - username: example-user
-#   # Custom entities from plugin can also be specified
-#   # If they specify a foreign-key relationshp, they can also be nested
-#   keyauth_credentials:
-#   - key: my-key
+consumers:
+- username: example-user
+  # Custom entities from plugin can also be specified
+  # If they specify a foreign-key relationshp, they can also be nested
+  keyauth_credentials:
+  - key: my-key
 #   plugins:
 #   - name: rate-limiting
 #     _comment: "these are default rate-limits for user example-user"
