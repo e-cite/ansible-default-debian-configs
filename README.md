@@ -1,2 +1,3 @@
-# ansible-default-debian-configs
-Ansible playbooks for default configs on debian based systems
+# ansible
+My ansible playbooks:
+* Default configs on debian based systems
