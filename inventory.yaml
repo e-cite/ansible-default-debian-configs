@@ -1,5 +1,4 @@
 # Inventory file
-# If hostname is used, there will be problems after 
 all:
   children:
     test:
