@@ -1,0 +1,21 @@
+# This playbook configures SSH on debian based systems
+- name: Play to manage user and ssh keys
+  tags: user,ssh
+  hosts: all
+  become: yes
+  tasks:
+  - name: Ensure user 'ecite' is present and member of sudo group
+    user:
+      name: ecite
+      state: present
+      groups: sudo
+      append: yes
+      update_password: on_create
+
+  - name: Set authorized keys
+    ansible.posix.authorized_key:
+      user: ecite
+      state: present
+      exclusive: true
+      # key: https://github.com/e-cite.keys
+      key: "{{ lookup('file', '/home/ecite/.ssh/id_ed25519.pub') }}"
