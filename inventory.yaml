@@ -1,11 +1,14 @@
 # Inventory file
 all:
+  vars:
+    sshca_pubkey_file: "~/sshca/ssh-root-ca.pub"
   children:
     test:
       hosts:
         debianserver1.fritz.box:
           new_hostname: "debianserver1"
           new_domain: "fritz.box"
+          sshca_host_certificate_file: "~/sshca/ssh_host_ecdsa_key-cert.pub"
     rpis:
       hosts:
         rpi1.fritz.box:
