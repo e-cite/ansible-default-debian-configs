@@ -1,0 +1,24 @@
+---
+- name: Copy SSH CA public key file to server
+  copy:
+    src: '{{ sshca_pubkey_file }}'
+    dest: /etc/ssh/ssh-root-ca.pub
+
+- name: Copy SSH CA host certificate file to server
+  copy:
+    src: '{{ sshca_host_certificate_file }}'
+    dest: /etc/ssh/ssh_host_ecdsa_key-cert.pub
+  when:
+    sshca_host_certificate_file is defined
+
+- name: Copy sshd_config file to server
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+  notify: "restart ssh server"
+
+- name: Ensure ssh is restarted and enabled on restart
+  service:
+    name: ssh
+    state: started
+    enabled: yes

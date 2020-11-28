@@ -8,6 +8,6 @@
 #   roles:
 #     - ssh_bastion
 
-# - hosts: ssh_servers
-#   roles:
-#     - ssh_server
+- hosts: ssh_servers
+  roles:
+    - ssh_server

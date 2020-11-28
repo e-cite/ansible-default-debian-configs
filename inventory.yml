@@ -1,12 +1,12 @@
 # Inventory file
 all:
   vars:
-    sshca_pubkey_file: "~/sshca/ssh-root-ca.pub"
     adminuser: "ecite"
     locale: "de_DE.UTF-8"
     timezone: "Europe/Berlin"
     ntp_server: [0.de.pool.ntp.org,1.de.pool.ntp.org,2.de.pool.ntp.org,3.de.pool.ntp.org]
     ntp_server_backup: [pool.ntp.org]
+    sshca_pubkey_file: "~/sshca/ssh-root-ca.pub"
   hosts:
     debianserver1.fritz.box:
       new_hostname: "debianserver1"
@@ -20,5 +20,10 @@ all:
       debianserver1.fritz.box:
     rpis:
       hosts:
+        rpi1.fritz.box:
+        rpi2.fritz.box:
+    ssh_servers:
+      hosts:
+        debianserver1.fritz.box:
         rpi1.fritz.box:
         rpi2.fritz.box:
