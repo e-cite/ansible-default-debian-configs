@@ -12,7 +12,8 @@ Role Variables
 --------------
 
 - sshca_pubkey_file: Public key file of SSH root CA. (*Required*)
-- sshca_host_certificate_file: Host-specific certificate file for each host, signed by SSH CA. (*Optional*)
+- sshca_host_pubkeys_folder: Folder where to save fetched SSH host public keys from servers to assist SSH certificate issuing. (*Optional*)
+- sshca_host_certificate_file: Path to certificate file for each host, signed by SSH CA. (*Optional*)
 
 Dependencies
 ------------

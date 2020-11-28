@@ -4,6 +4,13 @@
     src: '{{ sshca_pubkey_file }}'
     dest: /etc/ssh/ssh-root-ca.pub
 
+- name: Fetch ssh_host_ecdsa_key.pub from node for SSH CA cert issuing
+  fetch:
+    src: "/etc/ssh/ssh_host_ecdsa_key.pub"
+    dest: "{{ sshca_host_pubkeys_folder }}"
+  when:
+    sshca_host_pubkeys_folder is defined #and sshca_host_certificate_file is undefined
+
 - name: Copy SSH CA host certificate file to server
   copy:
     src: '{{ sshca_host_certificate_file }}'
