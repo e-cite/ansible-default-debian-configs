@@ -13,12 +13,16 @@ all:
     debianserver1.fritz.box:
       new_hostname: "debianserver1"
       new_domain: "fritz.box"
+    debianserver2.fritz.box:
+      new_hostname: "debianserver2"
+      new_domain: "fritz.box"
     rpi1.fritz.box:
     rpi2.fritz.box:
 
   children:
     test:
       debianserver1.fritz.box:
+      debianserver2.fritz.box:
     rpis:
       hosts:
         rpi1.fritz.box:
@@ -26,5 +30,6 @@ all:
     ssh_servers:
       hosts:
         debianserver1.fritz.box:
+        debianserver2.fritz.box:
         rpi1.fritz.box:
         rpi2.fritz.box:
