@@ -2,14 +2,18 @@
 all:
   vars:
     sshca_pubkey_file: "~/sshca/ssh-root-ca.pub"
+  hosts:
+    debianserver1.fritz.box:
+      user: "ecite"
+      new_hostname: "debianserver1"
+      new_domain: "fritz.box"
+      sshca_host_certificate_file: "~/sshca/ssh_host_ecdsa_key-debianserver1-cert.pub"
+    rpi1.fritz.box:
+    rpi2.fritz.box:
+
   children:
     test:
-      hosts:
-        debianserver1.fritz.box:
-          user: "ecite"
-          new_hostname: "debianserver1"
-          new_domain: "fritz.box"
-          sshca_host_certificate_file: "~/sshca/ssh_host_ecdsa_key-cert.pub"
+      debianserver1.fritz.box:
     rpis:
       hosts:
         rpi1.fritz.box:
