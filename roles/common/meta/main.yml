@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Andreas Dolp
-  description: Common settings for servers (hostname, timezone, locales, ntp, unattended-upgrades)
+  description: Common settings for servers (hostname, username, timezone, locales, ntp, unattended-upgrades)
   company:
   license: license (MIT)
 

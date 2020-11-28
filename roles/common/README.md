@@ -1,7 +1,7 @@
 Role Common
 =========
 
-Common settings for servers (hostname, timezone, locales, ntp, unattended-upgrades).
+Common settings for servers (hostname, username, timezone, locales, ntp, unattended-upgrades).
 
 Requirements
 ------------
@@ -12,7 +12,11 @@ Requirements
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- `adminuser`: New or already existing admin user. The role ensures that this user is present on every host.
+- `locale`: Locale, e.g. "de_DE.UTF-8".
+- `timezone`: Timezone, e.g. "Europe/Berlin".
+- `ntp_server`: List of primary NTP servers querried by ntp.
+- `ntp_server_backup`: List of backup NTP servers, querried by ntp when primary NTP servers are not available.
 
 Dependencies
 ------------

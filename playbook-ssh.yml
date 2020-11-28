@@ -1,32 +1,9 @@
-# This playbook configures user, sudo and SSH on debian based systems
-- name: Play to manage user, sudo and ssh configuration
-  tags: user,ssh
+# This playbook configures SSH on debian based systems
+- name: Play to manage ssh configuration
+  tags: ssh
   hosts: all
   become: yes
   tasks:
-  - name: Ensure sudo package is installed
-    apt: 
-      name: sudo
-      state: present
-
-  - name: Ensure defined user is present and member of sudo group
-    user:
-      name: '{{ user }}'
-      state: present
-      groups: sudo
-      append: yes
-      update_password: on_create
-    when:
-      user is defined
-
-  - name: Ensure sudo group can become root without password
-    lineinfile:
-        path: /etc/sudoers
-        state: present
-        regexp: '^%sudo'
-        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
-
   - name: Copy sshd_config file to server
     copy:
       src: sshd_config
