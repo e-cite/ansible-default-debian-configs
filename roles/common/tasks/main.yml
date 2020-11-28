@@ -1,0 +1,3 @@
+---
+- { include: hostname.yml, become: yes }
+- { include: time.yml, become: yes }

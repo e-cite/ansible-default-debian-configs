@@ -1,0 +1,13 @@
+# Main playbook to assign the roles to every server
+
+- hosts: all
+  roles:
+    - common
+
+# - hosts: ssh_bastion_servers
+#   roles:
+#     - ssh_bastion
+
+# - hosts: ssh_servers
+#   roles:
+#     - ssh_server
