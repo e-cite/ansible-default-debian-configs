@@ -1,3 +1,5 @@
 ---
-- name: Set locale to de_DE.UTF-8
-  community.general.locale_gen: name=de_DE.UTF-8 state=present
+- name: Set locale to "{{ locale }}"
+  community.general.locale_gen:
+    name: "{{ locale }}"
+    state: present
