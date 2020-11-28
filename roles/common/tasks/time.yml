@@ -1,5 +1,5 @@
 ---
-- name: Set timezone to Europe/Berlin.
+- name: Set timezone to Europe/Berlin
   community.general.timezone: name=Europe/Berlin
 
 - name: Install NTP package
@@ -11,7 +11,7 @@
     src: ntp.conf.j2
     dest: /etc/ntp.conf
   notify: restart ntp
-- name: Ensure ntp is started an enabled on restart.
+- name: Ensure ntp is started an enabled on restart
   service:
     name: ntp
     state: started
