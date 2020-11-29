@@ -1,0 +1,18 @@
+---
+- name: Install yubikey authentication pam module
+  apt:
+    name: libpam-yubico
+    state: present
+
+- name: Copy yubikey_mappings to /etc/yubikey_mappings
+  template:
+    src: yubikey_mappings.j2
+    dest: /etc/yubikey_mappings
+
+- name: Add pam_yubico.so module to /etc/pam.d/sshd file
+  blockinfile:
+    path: /etc/pam.d/sshd
+    insertbefore: '# Standard Un\*x authentication\.'
+    block: |
+      # Yubikey authentication
+      auth    required        pam_yubico.so id={{ yubico_api_id }} authfile=/etc/yubikey_mappings

@@ -9,10 +9,12 @@ all:
     sshca_host_pubkeys_folder: "~/sshca"
     sshca_pubkey_file: "~/sshca/ssh-root-ca.pub"
     sshca_host_certificate_file: "~/sshca/{{ inventory_hostname }}/etc/ssh/ssh_host_ecdsa_key-cert.pub"
+    yubico_api_id: "12345"
   hosts:
     debianserver1.fritz.box:
       new_hostname: "debianserver1"
       new_domain: "fritz.box"
+      bastionhost: "yes"
     debianserver2.fritz.box:
       new_hostname: "debianserver2"
       new_domain: "fritz.box"

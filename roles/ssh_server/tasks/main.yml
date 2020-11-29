@@ -1,2 +1,3 @@
 ---
 - { include: ssh_server.yml, become: yes }
+- { include: yubikey_authentication.yml, become: yes, when: bastionhost == "yes" }
