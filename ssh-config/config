@@ -1,14 +1,19 @@
-# This is the SSH client config, normally located at ~/.ssh/config
+# This is the SSH client config used by ansible.
 
 # The Bastion host
 Host debianserver1.fritz.box
     User ecite
     IdentityFile ~/.ssh/id_ecdsa
     CertificateFile ~/.ssh/id_ecdsa-cert.pub
+    ControlMaster auto
+    ControlPath ~/.ssh/ansible-%r@%h:%p
+    ControlPersist no
 
 # The nodes behind the bastion host
 Host debianserver2.fritz.box
-    ProxyCommand ssh debianserver1.fritz.box -W %h:%p
+    ProxyCommand ssh -W %h:%p debianserver1.fritz.box -F ./ssh-config/config
+    IdentityFile ~/.ssh/id_ecdsa
+    CertificateFile ~/.ssh/id_ecdsa-cert.pub
 Host rpi1.fritz.box
     ProxyCommand ssh debianserver1.fritz.box -W %h:%p
 Host rpi2.fritz.box
