@@ -4,10 +4,6 @@
   roles:
     - common
 
-# - hosts: ssh_bastion_servers
-#   roles:
-#     - ssh_bastion
-
 - hosts: ssh_servers
   roles:
     - ssh_server

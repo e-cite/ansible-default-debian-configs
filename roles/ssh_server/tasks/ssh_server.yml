@@ -18,10 +18,18 @@
   when:
     sshca_host_certificate_file is defined
 
-- name: Copy sshd_config file to server
+- name: Copy standard sshd_config file to server
   template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
+  when: bastionhost != "yes"
+  notify: "restart ssh server"
+
+- name: Copy bastion host sshd_config file to bastion host
+  template:
+    src: sshd_config_bastion.j2
+    dest: /etc/ssh/sshd_config
+  when: bastionhost == "yes"
   notify: "restart ssh server"
 
 - name: Ensure ssh is restarted and enabled on restart
