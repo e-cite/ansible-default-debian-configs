@@ -18,6 +18,18 @@
   when:
     sshca_host_certificate_file is defined
 
+- name: Create directory /etc/ssh/auth_principals
+  file:
+    path: /etc/ssh/auth_principals
+    state: directory
+    mode: '0755'
+
+- name: Copy auth_principals file for {{ adminuser }} to server
+  template:
+    src: auth_principals.j2
+    dest: /etc/ssh/auth_principals/{{ adminuser }}
+  notify: "restart ssh server"
+
 - name: Copy standard sshd_config file to server
   template:
     src: sshd_config.j2
