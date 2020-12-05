@@ -55,13 +55,19 @@ AuthorizedPrincipalsFile /etc/ssh/auth_principals/%u
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication yes
+PasswordAuthentication no
 #PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
+{% if bastionhost == "yes" %}
+# Bastion host config
+ChallengeResponseAuthentication yes
+AuthenticationMethods publickey,keyboard-interactive
+{% else %}
+# Default config
 ChallengeResponseAuthentication no
-
+{% endif %}
 # Kerberos options
 #KerberosAuthentication no
 #KerberosOrLocalPasswd yes
