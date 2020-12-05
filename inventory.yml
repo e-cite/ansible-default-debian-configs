@@ -18,10 +18,11 @@ all:
       new_hostname: "debianserver1"
       new_domain: "fritz.box"
       bastionhost: "yes"
-      principals: [servers] # The principal `all` is appended automatically
+      principals: [servers,bastion] # The principal `all` is appended automatically
     debianserver2.fritz.box:
       new_hostname: "debianserver2"
       new_domain: "fritz.box"
+      principals: [servers] # The principal `all` is appended automatically 
 
   children:
     ssh_servers:
