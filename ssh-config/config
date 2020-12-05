@@ -1,7 +1,7 @@
 # This is the SSH client config used by ansible.
 
 # The Bastion host
-Host debianserver1.fritz.box
+Host debianserver1.fritz.box debianserver1
     User ecite
     IdentityFile ~/.ssh/id_ecdsa
     CertificateFile ~/.ssh/id_ecdsa-cert.pub
@@ -10,7 +10,7 @@ Host debianserver1.fritz.box
     ControlPersist no
 
 # The nodes behind the bastion host
-Host debianserver2.fritz.box
+Host debianserver2.fritz.box debianserver2
     ProxyCommand ssh -W %h:%p debianserver1.fritz.box -F ./ssh-config/config
     IdentityFile ~/.ssh/id_ecdsa
     CertificateFile ~/.ssh/id_ecdsa-cert.pub
