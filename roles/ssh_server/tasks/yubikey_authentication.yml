@@ -16,3 +16,10 @@
     block: |
       # Yubikey authentication
       auth    required        pam_yubico.so id={{ yubico_api_id }} authfile=/etc/yubikey_mappings
+
+# Comment line 
+- name: Comment line '@include common-auth' in /etc/pam.d/sshd file to allow passwordless login
+  replace:
+    path: /etc/pam.d/sshd
+    regexp: '^@include common-auth'
+    replace: '# @include common-auth'
