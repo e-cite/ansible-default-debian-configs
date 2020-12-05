@@ -7,7 +7,8 @@ Requirements
 ------------
 
 - Make sure your current user can login to every server by SSH public-private-key.
-- Caution: This role can change the hostnames, so update your inventory accorindly.
+- Ensure package `sudo`is installed and current user is member of the `sudo` group.
+- Caution: This role can change the hostnames, so update your inventory accordingly.
 
 Role Variables
 --------------
