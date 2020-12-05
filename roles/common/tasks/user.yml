@@ -11,11 +11,3 @@
     groups: sudo
     append: yes
     update_password: on_create
-
-- name: Ensure sudo group can become root without password
-  lineinfile:
-      path: /etc/sudoers
-      state: present
-      regexp: '^%sudo'
-      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-      validate: 'visudo -cf %s'
