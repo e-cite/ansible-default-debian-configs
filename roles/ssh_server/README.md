@@ -1,21 +1,22 @@
 Role ssh_server
 =========
 
-Role to set SSH server settings.
+Role to set SSH server settings, with options for bastionhost with YubiKey authentication.
 
 Requirements
 ------------
 
-- Ensure required files as defined by variables are present.
+- Ensure required files are present as defined by variables.
 
 Role Variables
 --------------
 
-- `sshca_pubkey_file`: Public key file of SSH root CA. (*Required*)
-- `sshca_host_pubkeys_folder`: Folder where to save fetched SSH host public keys from servers to assist SSH certificate issuing. (*Optional*)
-- `sshca_host_certificate_file`: Path to certificate file for each host, signed by SSH CA. (*Optional*)
-- `bastionhost`: Defaults to "no". Set "yes" together with "yubico_api_id" and "yubikey_mappings.j2" template to enable yubikey authentication.
+- `sshca_root_pubkey_file`: Public key file of SSH root CA. (*Required*)
+- `sshca_host_pubkey_folder`: Folder, where to save fetched SSH host public keys from servers to assist SSH certificate issuing. (*Required*)
+- `sshca_host_pubkey_cert_file`: Path to certificate file for each host, signed by SSH CA. (*Required*)
+- `bastionhost`: Defaults to "no". Set "yes" together with "yubico_api_id" and "yubikey_mappings.j2" template to enable YubiKey authentication.
 - `yubico_api_id`: Get it from https://upgrade.yubico.com/getapikey/.
+- `principals`: List of security principals to set in /etc/ssh/auth_principals
 
 Dependencies
 ------------
