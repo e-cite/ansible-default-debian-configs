@@ -21,8 +21,14 @@ HostKey /etc/ssh/ssh_host_ecdsa_key
 #HostKey /etc/ssh/ssh_host_ed25519_key
 HostCertificate /etc/ssh/ssh_host_ecdsa_key-cert.pub
 
-# Ciphers and keying
-#RekeyLimit default none
+# Ciphers and keying according to BSI TR-02102-4 "Kryptographische Verfahren: Teil 4 – Verwendung von Secure Shell (SSH) Version: 2020-01
+RekeyLimit 1G 3600
+
+KexAlgorithms diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256
+
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr,aes256-cbc,aes192-cbc,aes128-cbc
+
+MACs hmac-sha2-512,hmac-sha2-256
 
 # Logging
 #SyslogFacility AUTH
