@@ -48,7 +48,12 @@ MaxAuthTries 6
 #AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
 
 TrustedUserCAKeys /etc/ssh/ssh-root-ca.pub
-AuthorizedPrincipalsFile /etc/ssh/auth_principals/%u
+
+# If user is member of group {{ bastionhost_users_group }},
+# use his username from certificate as security principal.
+# Otherwise use principal defined in /etc/ssh/auth_principals/%u.
+Match Group !{{ bastionhost_users_group }}
+    AuthorizedPrincipalsFile /etc/ssh/auth_principals/%u
 
 #AuthorizedKeysCommand none
 #AuthorizedKeysCommandUser nobody
