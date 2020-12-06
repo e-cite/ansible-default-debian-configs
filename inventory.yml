@@ -19,10 +19,12 @@ all:
       new_domain: "fritz.box"
       bastionhost: "yes"
       principals: [servers,bastion] # The principal `all` is appended automatically
+      clean_authorized_keys: "no"
     debianserver2.fritz.box:
       new_hostname: "debianserver2"
       new_domain: "fritz.box"
       principals: [servers] # The principal `all` is appended automatically 
+      clean_authorized_keys: "no"
 
   children:
     ssh_servers:

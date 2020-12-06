@@ -30,6 +30,12 @@
     dest: /etc/ssh/auth_principals/{{ adminuser }}
   notify: "restart ssh server"
 
+- name: Delete file /home/{{ adminuser }}/.ssh/authorized_keys
+  file:
+    path: /home/{{ adminuser }}/.ssh/authorized_keys
+    state: absent
+  when: clean_authorized_keys == "yes"
+
 # Copy sshd_config
 - name: Copy default sshd_config file to server
   template:

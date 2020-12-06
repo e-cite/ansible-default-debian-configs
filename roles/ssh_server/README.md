@@ -17,6 +17,7 @@ Role Variables
 - `bastionhost`: Defaults to "no". Set "yes" together with "yubico_api_id" and "yubikey_mappings.j2" template to enable YubiKey authentication.
 - `yubico_api_id`: Get it from https://upgrade.yubico.com/getapikey/.
 - `principals`: List of security principals to set in /etc/ssh/auth_principals
+- `clean_authorized_keys`: Clean / delete authorized_keys file of adminuser to ensure SSH CA authentication only. Default / undefined is no.
 
 Dependencies
 ------------

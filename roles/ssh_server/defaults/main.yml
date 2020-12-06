@@ -1,3 +1,4 @@
 ---
 bastionhost: "no"
 principals: []
+clean_authorized_keys: "no"
