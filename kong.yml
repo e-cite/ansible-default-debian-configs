@@ -4,7 +4,7 @@ _format_version: "1.1"
 # URL definiert die Zugriffe auf das Backend
 # Plugins werden teilweise je Route oder je Service definiert
 services:
-# Allgemeiner Service
+# Regelsätze etopen
 - name: etopen
   url: http://192.168.122.159/rules/etopen/
   routes:
@@ -12,12 +12,13 @@ services:
     paths:
     - /rules/etopen
   plugins:
+  - name: key-auth
   - name: acl
     config:
       allow:
       - all
 
-# Kunde kd1234
+# Regelsätze kd1234
 - name: kd-1234
   url: http://192.168.122.159/rules/kd-1234/
   routes:
@@ -25,11 +26,13 @@ services:
     paths:
     - /rules/kd-1234
   plugins:
+  - name: key-auth
   - name: acl
     config:
       allow:
       - kd1234
-# Kunde kd2234
+
+# Regelsätze kd2234
 - name: kd-2234
   url: http://192.168.122.159/rules/kd-2234/
   routes:
@@ -37,14 +40,11 @@ services:
     paths:
     - /rules/kd-2234
   plugins:
+  - name: key-auth
   - name: acl
     config:
       allow:
       - kd2234
-
-# Die key-auth global aktivieren, für jeden Service
-plugins:
-- name: key-auth
 
 # Kunden anlegen, Credentials definieren und Gruppen zuweisen
 consumers:
