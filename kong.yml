@@ -57,6 +57,42 @@ services:
   - name: basic-auth
     config: 
       hide_credentials: true
+  - name: acl
+    config:
+      allow:
+      - all
+
+# Ansible-Git kd-1234
+- name: ansible-kd-1234
+  url: http://192.168.122.159/git/kd-1234/
+  routes:
+  - name: ansible-kd-1234
+    paths:
+    - /git/kd-1234
+  plugins:
+  - name: basic-auth
+    config: 
+      hide_credentials: true
+  - name: acl
+    config:
+      allow:
+      - kd1234
+
+# Ansible-Git kd-2234
+- name: ansible-kd-2234
+  url: http://192.168.122.159/git/kd-2234/
+  routes:
+  - name: ansible-kd-2234
+    paths:
+    - /git/kd-2234
+  plugins:
+  - name: basic-auth
+    config: 
+      hide_credentials: true
+  - name: acl
+    config:
+      allow:
+      - kd2234
 
 # Kunden anlegen, Credentials definieren und Gruppen zuweisen
 consumers:
