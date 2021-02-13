@@ -30,16 +30,16 @@
         dest: /etc/kong/kong.conf
         owner: root
         group: root
-        mode: '0644'
+        mode: '0640'
       notify: restart kong
-    - name: Copy kong.yml
+    - name: Copy kong.yaml
       tags: configure
       copy:
-        src: kong.yml
-        dest: /etc/kong/kong.yml
+        src: kong.yaml
+        dest: /etc/kong/kong.yaml
         owner: root
         group: root
-        mode: '0644'
+        mode: '0640'
       notify: restart kong
     - name: Start and enable kong service
       tags: install
