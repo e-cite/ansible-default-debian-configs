@@ -46,6 +46,18 @@ services:
       allow:
       - kd2234
 
+# Ansible-Git kritisdefender
+- name: kritisdefender
+  url: http://192.168.122.159/git/kritisdefender/
+  routes:
+  - name: kritisdefender
+    paths:
+    - /git/kritisdefender
+  plugins:
+  - name: basic-auth
+    config: 
+      hide_credentials: true
+
 # Kunden anlegen, Credentials definieren und Gruppen zuweisen
 consumers:
 - username: kd1234
@@ -54,6 +66,10 @@ consumers:
   acls:
   - group: kd1234
   - group: all
+  basicauth_credentials:
+  - consumer: kd1234
+    username: kd1234
+    password: "12341234"
 
 - username: kd2234
   keyauth_credentials:
@@ -61,3 +77,7 @@ consumers:
   acls:
   - group: kd2234
   - group: all
+  basicauth_credentials:
+  - consumer: kd2234
+    username: kd2234
+    password: "22342234"
