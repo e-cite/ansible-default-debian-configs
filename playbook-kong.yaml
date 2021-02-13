@@ -1,7 +1,8 @@
+---
 # This playbook installs and configures KONG CE on debian based systems
 - name: Install and configure
   hosts: all
-  become: yes
+  become: true
   tasks:
     - name: Install dependencies
       apt:
@@ -45,9 +46,8 @@
       service:
         name: kong
         state: started
-        enabled: yes
-    # Firewall Profile
+        enabled: true
 
   handlers:
-  - name: restart kong
-    service: name=kong state=restarted
+    - name: restart kong
+      service: name=kong state=restarted

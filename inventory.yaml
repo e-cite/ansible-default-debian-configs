@@ -1,5 +1,6 @@
+---
 # Inventory file
-# If hostname is used, there will be problems after 
+# If hostname is used, there will be problems after
 all:
   hosts:
     test2:
