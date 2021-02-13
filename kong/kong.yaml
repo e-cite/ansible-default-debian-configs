@@ -1,0 +1,120 @@
+---
+_format_version: "1.1"
+
+# Erstelle services, welche unter http://apihost:8000/paths exponiert werden
+# URL definiert die Zugriffe auf das Backend
+# Plugins werden teilweise je Route oder je Service definiert
+services:
+  # Regelsätze etopen
+  - name: etopen
+    url: http://192.168.122.159/rules/etopen/
+    routes:
+      - name: etopen
+        paths:
+          - /rules/etopen
+    plugins:
+      - name: key-auth
+      - name: acl
+        config:
+          allow:
+            - all
+
+  # Regelsätze kd1234
+  - name: kd-1234
+    url: http://192.168.122.159/rules/kd-1234/
+    routes:
+      - name: kd-1234
+        paths:
+          - /rules/kd-1234
+    plugins:
+      - name: key-auth
+      - name: acl
+        config:
+          allow:
+            - kd1234
+
+  # Regelsätze kd2234
+  - name: kd-2234
+    url: http://192.168.122.159/rules/kd-2234/
+    routes:
+      - name: kd-2234
+        paths:
+          - /rules/kd-2234
+    plugins:
+      - name: key-auth
+      - name: acl
+        config:
+          allow:
+            - kd2234
+
+  # Ansible-Git kritisdefender
+  - name: kritisdefender
+    url: http://192.168.122.159/git/kritisdefender/
+    routes:
+      - name: kritisdefender
+        paths:
+          - /git/kritisdefender
+    plugins:
+      - name: basic-auth
+        config:
+          hide_credentials: true
+      - name: acl
+        config:
+          allow:
+            - all
+
+  # Ansible-Git kd-1234
+  - name: ansible-kd-1234
+    url: http://192.168.122.159/git/kd-1234/
+    routes:
+      - name: ansible-kd-1234
+        paths:
+          - /git/kd-1234
+    plugins:
+      - name: basic-auth
+        config:
+          hide_credentials: true
+      - name: acl
+        config:
+          allow:
+            - kd1234
+
+  # Ansible-Git kd-2234
+  - name: ansible-kd-2234
+    url: http://192.168.122.159/git/kd-2234/
+    routes:
+      - name: ansible-kd-2234
+        paths:
+          - /git/kd-2234
+    plugins:
+      - name: basic-auth
+        config:
+          hide_credentials: true
+      - name: acl
+        config:
+          allow:
+            - kd2234
+
+# Kunden anlegen, Credentials definieren und Gruppen zuweisen
+consumers:
+  - username: kd1234
+    keyauth_credentials:
+      - key: "12341234"
+    acls:
+      - group: kd1234
+      - group: all
+    basicauth_credentials:
+      - consumer: kd1234
+        username: kd1234
+        password: "12341234"
+
+  - username: kd2234
+    keyauth_credentials:
+      - key: "22342234"
+    acls:
+      - group: kd2234
+      - group: all
+    basicauth_credentials:
+      - consumer: kd2234
+        username: kd2234
+        password: "22342234"

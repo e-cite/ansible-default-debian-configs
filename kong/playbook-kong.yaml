@@ -1,0 +1,53 @@
+---
+# This playbook installs and configures KONG CE on debian based systems
+- name: Install and configure
+  hosts: all
+  become: true
+  tasks:
+    - name: Install dependencies
+      apt:
+        name: [apt-transport-https, curl]
+        state: present
+    - name: Add KONG apt key
+      tags: install
+      apt_key:
+        url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+        state: present
+    - name: Add KONG repository
+      tags: install
+      apt_repository:
+        repo: deb https://kong.bintray.com/kong-deb buster main
+        state: present
+    - name: Install KONG
+      tags: install
+      apt:
+        name: kong
+        state: present
+    - name: Copy kong.conf
+      tags: configure
+      copy:
+        src: kong.conf
+        dest: /etc/kong/kong.conf
+        owner: root
+        group: root
+        mode: '0640'
+      notify: restart kong
+    - name: Copy kong.yaml
+      tags: configure
+      copy:
+        src: kong.yaml
+        dest: /etc/kong/kong.yaml
+        owner: root
+        group: root
+        mode: '0640'
+      notify: restart kong
+    - name: Start and enable kong service
+      tags: install
+      service:
+        name: kong
+        state: started
+        enabled: true
+
+  handlers:
+    - name: restart kong
+      service: name=kong state=restarted
